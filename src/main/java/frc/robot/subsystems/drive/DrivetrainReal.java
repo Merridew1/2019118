@@ -13,7 +13,6 @@ public class DrivetrainReal implements DrivetrainIO {
     TalonFX right1 = new TalonFX(0, "CANivore");
     TalonFX right2 = new TalonFX(0, "CANivore");
 
-
     /**
      * Drivetrain Real
      */
