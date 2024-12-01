@@ -1,7 +1,9 @@
 package frc.robot.subsystems.drive;
 
 import org.littletonrobotics.junction.Logger;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 /**
  * Drivetrain subsystem.
@@ -22,6 +24,16 @@ public class Drivetrain extends SubsystemBase {
     public void periodic() {
         io.updateInputs(inputs);
         Logger.processInputs("Drivetrain", inputs);
+    }
+
+    public void drive(Double lPower, double rPower) {
+        io.setDrivePower(lPower, rPower);
+        Logger.recordOutput("Drivetrain/leftPower", lPower);
+        Logger.recordOutput("Drivetrain/rightPower", rPower);
+    }
+
+    public Command driveCommand(CommandXboxController controller) {
+        return run(() -> drive(controller.getLeftY(), controller.getRightY()));
     }
 }
 

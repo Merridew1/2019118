@@ -18,8 +18,8 @@ public interface DrivetrainIO {
     /** Updates the set of loggable inputs. */
     public default void updateInputs(DrivetrainIOInputs inputs) {}
 
-    /** Run the motor at the specified voltage. */
-    public default void setDriveVoltage(double lvolts, double rvolts) {}
+    /** Run the motor at double power. */
+    public default void setDrivePower(double lPower, double rPower) {}
 
 
 }
