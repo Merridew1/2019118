@@ -5,19 +5,15 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class Hatch extends SubsystemBase {
     public HatchIO io;
-    CommandXboxController controller;
     private Boolean pidEnabled = false;
     private static final Rotation2d upright = Rotation2d.fromDegrees(100);
     private static final Rotation2d neutral = Rotation2d.fromDegrees(10);
 
-    public Hatch(HatchIO io, CommandXboxController controller) {
+    public Hatch(HatchIO io) {
         this.io = io;
-        this.controller = controller;
-
     }
 
     @Override

@@ -12,6 +12,9 @@ import frc.robot.Robot.RobotRunType;
 import frc.robot.subsystems.drive.Drivetrain;
 import frc.robot.subsystems.drive.DrivetrainIO;
 import frc.robot.subsystems.drive.DrivetrainReal;
+import frc.robot.subsystems.hatch.Hatch;
+import frc.robot.subsystems.hatch.HatchIO;
+import frc.robot.subsystems.hatch.HatchReal;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -29,6 +32,7 @@ public class RobotContainer {
 
     /* Subsystems */
     private Drivetrain drivetrain;
+    private Hatch hatch;
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -39,12 +43,14 @@ public class RobotContainer {
         switch (runtimeType) {
             case kReal:
                 drivetrain = new Drivetrain(new DrivetrainReal());
+                hatch = new Hatch(new HatchReal());
                 break;
             case kSimulation:
                 // drivetrain = new Drivetrain(new DrivetrainSim() {});
                 break;
             default:
                 drivetrain = new Drivetrain(new DrivetrainIO() {});
+                hatch = new Hatch(new HatchIO() {});
         }
         // Configure the button bindings
         configureButtonBindings();
@@ -58,6 +64,8 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         drivetrain.setDefaultCommand(drivetrain.driveCommand(driver));
+        driver.a().whileTrue(hatch.hatchUpCommand());
+        driver.a().whileTrue(hatch.hatchNeutralCommand());
     }
 
     /**
