@@ -1,12 +1,15 @@
 package frc.robot.subsystems.ballMechanism;
 
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.subsystems.LEDs;
 
 public class ballMechanism extends SubsystemBase {
     ballMechanismIO io;
     ballMechanismInputsAutoLogged intakeAutoLogged = new ballMechanismInputsAutoLogged();
+    LEDs lights = new LEDs(9, 100);
 
     public ballMechanism(ballMechanismIO io) {
         this.io = io;
@@ -31,12 +34,13 @@ public class ballMechanism extends SubsystemBase {
         return intakeAutoLogged.outtakeBeamBrake;
     }
 
-    public Command intakeCommand() {
+    public Command intakeCommand(Color color, Color altColor) {
         return Commands.startEnd(() -> {
             setBallMotor(1);
         }, () -> {
             setBallMotor(0);
-        }, this).until(() -> getIntakeBeamBreakStatus()).unless(() -> getIntakeBeamBreakStatus());
+        }, this).until(() -> getIntakeBeamBreakStatus()).unless(() -> getIntakeBeamBreakStatus())
+            .andThen(() -> lights.flash(color, altColor));
 
     }
 

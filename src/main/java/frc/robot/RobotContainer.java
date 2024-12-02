@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -72,7 +73,7 @@ public class RobotContainer {
         drivetrain.setDefaultCommand(drivetrain.driveCommand(driver));
         driver.a().whileTrue(hatch.hatchUpCommand());
         driver.a().whileTrue(hatch.hatchNeutralCommand());
-        driver.leftTrigger().whileTrue(intake.intakeCommand());
+        driver.leftTrigger().whileTrue(intake.intakeCommand(Color.kPurple, Color.kWhiteSmoke));
         driver.rightTrigger().whileTrue(intake.outtakeCommand());
     }
 
