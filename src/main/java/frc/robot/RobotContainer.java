@@ -9,6 +9,9 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Robot.RobotRunType;
+import frc.robot.subsystems.ballMechanism.ballMechanism;
+import frc.robot.subsystems.ballMechanism.ballMechanismIO;
+import frc.robot.subsystems.ballMechanism.ballMechanismReal;
 import frc.robot.subsystems.drive.Drivetrain;
 import frc.robot.subsystems.drive.DrivetrainIO;
 import frc.robot.subsystems.drive.DrivetrainReal;
@@ -33,6 +36,7 @@ public class RobotContainer {
     /* Subsystems */
     private Drivetrain drivetrain;
     private Hatch hatch;
+    private ballMechanism intake;
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -44,6 +48,7 @@ public class RobotContainer {
             case kReal:
                 drivetrain = new Drivetrain(new DrivetrainReal());
                 hatch = new Hatch(new HatchReal());
+                intake = new ballMechanism(new ballMechanismReal());
                 break;
             case kSimulation:
                 // drivetrain = new Drivetrain(new DrivetrainSim() {});
@@ -51,6 +56,7 @@ public class RobotContainer {
             default:
                 drivetrain = new Drivetrain(new DrivetrainIO() {});
                 hatch = new Hatch(new HatchIO() {});
+                intake = new ballMechanism(new ballMechanismIO() {});
         }
         // Configure the button bindings
         configureButtonBindings();
@@ -66,6 +72,8 @@ public class RobotContainer {
         drivetrain.setDefaultCommand(drivetrain.driveCommand(driver));
         driver.a().whileTrue(hatch.hatchUpCommand());
         driver.a().whileTrue(hatch.hatchNeutralCommand());
+        driver.leftTrigger().whileTrue(intake.intakeCommand());
+        driver.rightTrigger().whileTrue(intake.outtakeCommand());
     }
 
     /**
