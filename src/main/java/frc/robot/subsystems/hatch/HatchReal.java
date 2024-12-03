@@ -1,6 +1,5 @@
 package frc.robot.subsystems.hatch;
 
-import com.ctre.phoenix6.BaseStatusSignal;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
@@ -22,6 +21,7 @@ public class HatchReal implements HatchIO {
     public void updateInputs(HatchInputs inputs) {
         inputs.armAbsoluteEncRawValue = CANCoder.getPosition().getValueAsDouble();
     }
+
     @Override
     public void setHatchPower(double power) {
         neo.set(power);
