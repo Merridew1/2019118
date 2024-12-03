@@ -55,9 +55,33 @@ public class RobotContainer {
                 // drivetrain = new Drivetrain(new DrivetrainSim() {});
                 break;
             default:
-                drivetrain = new Drivetrain(new DrivetrainIO() {});
-                hatch = new Hatch(new HatchIO() {});
-                intake = new ballMechanism(new ballMechanismIO() {});
+                drivetrain = new Drivetrain(new DrivetrainIO() {
+
+                    @Override
+                    public void updateInputs(DrivetrainIOInputs inputs) {
+                    }
+
+                    @Override
+                    public void setDrivePower(double lPower, double rPower) {
+                    }});
+                hatch = new Hatch(new HatchIO() {
+
+                    @Override
+                    public void updateInputs(HatchInputs inputs) {
+                    }
+
+                    @Override
+                    public void setHatchPower(double power) {
+                    }});
+                intake = new ballMechanism(new ballMechanismIO() {
+
+                    @Override
+                    public void updateInputs(ballMechanismInputs inputs) {
+                    }
+
+                    @Override
+                    public void setBallMotor(double power) {
+                    }});
         }
         // Configure the button bindings
         configureButtonBindings();
@@ -71,8 +95,8 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         drivetrain.setDefaultCommand(drivetrain.driveCommand(driver));
-        driver.a().whileTrue(hatch.hatchUpCommand());
-        driver.a().whileTrue(hatch.hatchNeutralCommand());
+        driver.a().whileTrue(hatch.setHatchUp());
+        driver.b().whileTrue(hatch.setHatchNeutral());
         driver.leftTrigger().whileTrue(intake.intakeCommand(Color.kPurple, Color.kWhiteSmoke));
         driver.rightTrigger().whileTrue(intake.outtakeCommand());
     }

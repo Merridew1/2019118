@@ -10,8 +10,8 @@ public interface ballMechanismIO {
         double ballMotorPower;
     }
 
-    public default void updateInputs(ballMechanismInputs inputs) {}
+    public void updateInputs(ballMechanismInputs inputs);
 
-    public default void setBallMotor(double power) {}
+    public void setBallMotor(double power);
 
 }

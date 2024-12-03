@@ -16,10 +16,10 @@ public interface DrivetrainIO {
     }
 
     /** Updates the set of loggable inputs. */
-    public default void updateInputs(DrivetrainIOInputs inputs) {}
+    public void updateInputs(DrivetrainIOInputs inputs);
 
     /** Run the motor at double power. */
-    public default void setDrivePower(double lPower, double rPower) {}
+    public void setDrivePower(double lPower, double rPower);
 
 
 }

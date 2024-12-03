@@ -1,5 +1,6 @@
 package frc.robot.subsystems.ballMechanism;
 
+import org.littletonrobotics.junction.Logger;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -13,17 +14,18 @@ public class ballMechanism extends SubsystemBase {
 
     public ballMechanism(ballMechanismIO io) {
         this.io = io;
-
     }
 
     @Override
     public void periodic() {
+        io.updateInputs(intakeAutoLogged);
+        Logger.processInputs("ballMechanism", intakeAutoLogged);
+
 
     }
 
     public void setBallMotor(double power) {
         io.setBallMotor(power);
-        io.updateInputs(intakeAutoLogged);
     }
 
     public boolean getIntakeBeamBreakStatus() {
