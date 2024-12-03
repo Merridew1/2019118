@@ -5,11 +5,11 @@ import org.littletonrobotics.junction.AutoLog;
 public interface HatchIO {
     @AutoLog
     public static class HatchInputs {
-        Boolean touchSensor;
+        boolean touchSensor;
         double armAbsoluteEncRawValue;
     }
 
-    public default void updateInputs(HatchInputs inputs) {}
+    public void updateInputs(HatchInputs inputs);
 
-    public default void setHatchPower(double power) {}
+    public void setHatchPower(double power);
 }

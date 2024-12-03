@@ -2,16 +2,17 @@ package frc.robot.subsystems.drive;
 
 import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.math.geometry.Rotation2d;
+import frc.robot.Constants;
 
 /**
  * DrivetrainReal
  */
 public class DrivetrainReal implements DrivetrainIO {
 
-    TalonFX left1 = new TalonFX(2, "CANivore");
-    TalonFX left2 = new TalonFX(0, "CANivore");
-    TalonFX right1 = new TalonFX(0, "CANivore");
-    TalonFX right2 = new TalonFX(0, "CANivore");
+    TalonFX left1 = new TalonFX(Constants.Motors.DriveTrain.FRONT_LEFT_MOTOR_ID, "CANivore");
+    TalonFX left2 = new TalonFX(Constants.Motors.DriveTrain.BACK_LEFT_MOTOR_ID, "CANivore");
+    TalonFX right1 = new TalonFX(Constants.Motors.DriveTrain.FRONT_RIGHT_MOTOR_ID, "CANivore");
+    TalonFX right2 = new TalonFX(Constants.Motors.DriveTrain.BACK_RIGHT_MOTOR_ID, "CANivore");
 
     /**
      * Drivetrain Real
@@ -29,6 +30,7 @@ public class DrivetrainReal implements DrivetrainIO {
     /**
      * Drive Voltage
      */
+    @Override
     public void setDrivePower(double lPower, double rPower) {
         left1.set(lPower);
         left2.set(lPower);
