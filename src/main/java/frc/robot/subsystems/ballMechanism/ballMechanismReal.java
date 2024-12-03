@@ -18,6 +18,8 @@ public class ballMechanismReal implements ballMechanismIO {
 
     }
 
+
+
     @Override
     public void setBallMotor(double power) {
         neo.set(power);
