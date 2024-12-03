@@ -1,11 +1,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -29,8 +31,6 @@ import frc.robot.subsystems.hatch.HatchReal;
 public class RobotContainer {
     /* Controllers */
     private final CommandXboxController driver = new CommandXboxController(Constants.driverID);
-    private final CommandXboxController operator = new CommandXboxController(Constants.operatorID);
-
     // Initialize AutoChooser Sendable
     private final SendableChooser<String> autoChooser = new SendableChooser<>();
 
@@ -58,30 +58,27 @@ public class RobotContainer {
                 drivetrain = new Drivetrain(new DrivetrainIO() {
 
                     @Override
-                    public void updateInputs(DrivetrainIOInputs inputs) {
-                    }
+                    public void updateInputs(DrivetrainIOInputs inputs) {}
 
                     @Override
-                    public void setDrivePower(double lPower, double rPower) {
-                    }});
+                    public void setDrivePower(double lPower, double rPower) {}
+                });
                 hatch = new Hatch(new HatchIO() {
 
                     @Override
-                    public void updateInputs(HatchInputs inputs) {
-                    }
+                    public void updateInputs(HatchInputs inputs) {}
 
                     @Override
-                    public void setHatchPower(double power) {
-                    }});
+                    public void setHatchPower(double power) {}
+                });
                 intake = new ballMechanism(new ballMechanismIO() {
 
                     @Override
-                    public void updateInputs(ballMechanismInputs inputs) {
-                    }
+                    public void updateInputs(ballMechanismInputs inputs) {}
 
                     @Override
-                    public void setBallMotor(double power) {
-                    }});
+                    public void setBallMotor(double power) {}
+                });
         }
         // Configure the button bindings
         configureButtonBindings();
@@ -95,7 +92,10 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         drivetrain.setDefaultCommand(drivetrain.driveCommand(driver));
-        driver.a().whileTrue(hatch.setHatchUp());
+        driver.a()
+            .whileTrue(hatch.setHatchUp().andThen(
+                Commands.startEnd(() -> driver.getHID().setRumble(RumbleType.kBothRumble, 1),
+                    () -> driver.getHID().setRumble(RumbleType.kBothRumble, 0), null)));
         driver.b().whileTrue(hatch.setHatchNeutral());
         driver.leftTrigger().whileTrue(intake.intakeCommand(Color.kPurple, Color.kWhiteSmoke));
         driver.rightTrigger().whileTrue(intake.outtakeCommand());
