@@ -1,11 +1,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -93,7 +95,11 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         drivetrain.setDefaultCommand(drivetrain.driveCommand(driver));
-        driver.a().whileTrue(hatch.setHatchUp());
+        driver.a().whileTrue(hatch.setHatchUp().andThen(Commands.startEnd(() -> {
+            driver.getHID().setRumble(RumbleType.kBothRumble, 1);
+        }, () -> {
+            driver.getHID().setRumble(RumbleType.kBothRumble, 0);
+        })));
         driver.b().whileTrue(hatch.setHatchNeutral());
         driver.leftTrigger().whileTrue(
             intake.intakeCommand().andThen(leds.flashCommand(Color.kPurple, Color.kWhite)));

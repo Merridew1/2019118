@@ -22,21 +22,21 @@ public final class Constants {
      */
     public static final class Motors {
         public static final class Intake {
-        public static int INTAKE_MOTOR_ID = 12;
-            
+            public static int INTAKE_MOTOR_ID = 12;
+
         }
 
         public static final class DriveTrain {
-        public static int FRONT_LEFT_MOTOR_ID = 2;
-        public static  int FRONT_RIGHT_MOTOR_ID = 4;
-        public static  int BACK_RIGHT_MOTOR_ID = 5;
-        public static  int BACK_LEFT_MOTOR_ID = 3;
+            public static int FRONT_LEFT_MOTOR_ID = 2;
+            public static int FRONT_RIGHT_MOTOR_ID = 4;
+            public static int BACK_RIGHT_MOTOR_ID = 5;
+            public static int BACK_LEFT_MOTOR_ID = 3;
         }
 
         public static final class Hatch {
-        public static  int HATCH_MOTOR_ID = 10;
-        
-            
+            public static int HATCH_MOTOR_ID = 10;
+
+
         }
     }
 
@@ -46,11 +46,17 @@ public final class Constants {
     public static final class Pneumatics {
     }
 
-    public static final class PID{
+    public static final class PID {
         public static final class Hatch {
-            public static double P;
-            public static double I;
-            public static double D;
+            public static double P = 0;
+            public static double I = 0;
+            public static double D = 0;
+        }
+
+        public static final class DriveTrain {
+            public static double P = 0;
+            public static double I = 0;
+            public static double D = 0;
         }
     }
 

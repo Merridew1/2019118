@@ -113,7 +113,6 @@ public class LEDs extends SubsystemBase {
 
     public Command flashCommand(Color color, Color altColor) {
         return Commands.run(() -> alterNateFlash(color, altColor), this);
-    }
 
     public void alterNateFlash(Color color, Color altColor) {
         Timer timer = new Timer();

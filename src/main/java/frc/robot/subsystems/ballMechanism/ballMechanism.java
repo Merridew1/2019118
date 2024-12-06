@@ -40,6 +40,8 @@ public class ballMechanism extends SubsystemBase {
             setBallMotor(0);
         }, this).until(() -> getIntakeBeamBreakStatus()).unless(() -> getIntakeBeamBreakStatus());
 
+
+
     }
 
     public Command outtakeCommand() {
