@@ -2,7 +2,10 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.util.Color;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /**
@@ -108,21 +111,22 @@ public class LEDs extends SubsystemBase {
         return controLedBuffer.getLED(index);
     }
 
-    private int flashingDelay = 0;
+    public Command flashCommand(Color color, Color altColor) {
+        return Commands.run(() -> alterNateFlash(color, altColor), this);
+    }
 
+    public void alterNateFlash(Color color, Color altColor) {
+        Timer timer = new Timer();
+        timer.start();
+        for (int i = 0; i < 3; i++) {
+            if (i % 2 == 0) {
+                setColor(color);
+                timer.advanceIfElapsed(.25);
+            } else {
+                setColor(altColor);
+                timer.advanceIfElapsed(.25);
+            }
 
-    public void flash(Color color, Color altColor) {
-        if (flashingDelay < 10) {
-            for (var i = 0; i < getLength(); i++) {
-                setColor(i, color);
-            }
-        } else {
-            for (var i = 0; i < getLength(); i++) {
-                setColor(i, altColor);
-            }
         }
-        setData();
-        flashingDelay++;
-        flashingDelay %= 20;
     }
 }
