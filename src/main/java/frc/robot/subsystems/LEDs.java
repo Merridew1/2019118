@@ -3,6 +3,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.util.Color;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /**
@@ -106,6 +108,11 @@ public class LEDs extends SubsystemBase {
 
     public Color getColor(int index) {
         return controLedBuffer.getLED(index);
+    }
+
+    public Command flashCommand(Color color, Color altColor) {
+        int flashingDelay = 0;
+        return Commands.runEnd(null, null, null)
     }
 
     private int flashingDelay = 0;

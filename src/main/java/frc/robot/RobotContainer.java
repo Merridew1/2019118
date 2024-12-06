@@ -92,10 +92,11 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         drivetrain.setDefaultCommand(drivetrain.driveCommand(driver));
-        driver.a()
-            .whileTrue(hatch.setHatchUp().andThen(
-                Commands.startEnd(() -> driver.getHID().setRumble(RumbleType.kBothRumble, 1),
-                    () -> driver.getHID().setRumble(RumbleType.kBothRumble, 0), null)));
+        driver.a().whileTrue(hatch.setHatchUp().andThen(Commands.startEnd(() -> {
+            driver.getHID().setRumble(RumbleType.kBothRumble, 1);
+        }, () -> {
+            driver.getHID().setRumble(RumbleType.kBothRumble, 0);
+        })));
         driver.b().whileTrue(hatch.setHatchNeutral());
         driver.leftTrigger().whileTrue(intake.intakeCommand(Color.kPurple, Color.kWhiteSmoke));
         driver.rightTrigger().whileTrue(intake.outtakeCommand());
