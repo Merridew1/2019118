@@ -41,8 +41,7 @@ public class ballMechanism extends SubsystemBase {
             setBallMotor(1);
         }, () -> {
             setBallMotor(0);
-        }, this).until(() -> getIntakeBeamBreakStatus()).unless(() -> getIntakeBeamBreakStatus())
-            .andThen(() -> lights.flash(color, altColor)).andThen();
+        }, this).until(() -> getIntakeBeamBreakStatus()).unless(() -> getIntakeBeamBreakStatus());
 
     }
 

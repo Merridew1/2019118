@@ -111,25 +111,10 @@ public class LEDs extends SubsystemBase {
     }
 
     public Command flashCommand(Color color, Color altColor) {
-        int flashingDelay = 0;
-        return Commands.runEnd(null, null, null)
+
+        return Commands.runEnd(null, null, null);
     }
 
-    private int flashingDelay = 0;
 
-
-    public void flash(Color color, Color altColor) {
-        if (flashingDelay < 10) {
-            for (var i = 0; i < getLength(); i++) {
-                setColor(i, color);
-            }
-        } else {
-            for (var i = 0; i < getLength(); i++) {
-                setColor(i, altColor);
-            }
-        }
-        setData();
-        flashingDelay++;
-        flashingDelay %= 20;
-    }
 }
+
