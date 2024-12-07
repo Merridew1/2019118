@@ -113,7 +113,7 @@ public class LEDs extends SubsystemBase {
 
     public Command flashCommand(Color color, Color altColor) {
 
-        return Commands.runEnd(null, null, null);
+        return Commands.runEnd(() -> flash(color, altColor), () -> setColor(Color.kBlack), this);
     }
 
     public void flash(Color color, Color altColor) {
