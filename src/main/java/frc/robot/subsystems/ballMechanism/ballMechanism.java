@@ -1,7 +1,6 @@
 package frc.robot.subsystems.ballMechanism;
 
 import org.littletonrobotics.junction.Logger;
-import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -36,7 +35,7 @@ public class ballMechanism extends SubsystemBase {
         return intakeAutoLogged.outtakeBeamBrake;
     }
 
-    public Command intakeCommand(Color color, Color altColor) {
+    public Command intakeCommand() {
         return Commands.startEnd(() -> {
             setBallMotor(1);
         }, () -> {

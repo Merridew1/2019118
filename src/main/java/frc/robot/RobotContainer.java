@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -98,7 +97,7 @@ public class RobotContainer {
             driver.getHID().setRumble(RumbleType.kBothRumble, 0);
         })));
         driver.b().whileTrue(hatch.setHatchNeutral());
-        driver.leftTrigger().whileTrue(intake.intakeCommand(Color.kPurple, Color.kWhiteSmoke));
+        driver.leftTrigger().whileTrue(intake.intakeCommand());
         driver.rightTrigger().whileTrue(intake.outtakeCommand());
     }
 
