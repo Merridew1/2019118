@@ -1,16 +1,21 @@
 package frc.robot.subsystems.ballMechanism;
 
 import org.littletonrobotics.junction.Logger;
-
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+/*
+ * Intake class
+ */
 public class ballMechanism extends SubsystemBase {
     ballMechanismIO io;
     ballMechanismInputsAutoLogged intakeAutoLogged = new ballMechanismInputsAutoLogged();
 
+    /*
+     * Constructor
+     */
     public ballMechanism(ballMechanismIO io) {
         this.io = io;
         CameraServer.startAutomaticCapture("Intake Camera", 0);
