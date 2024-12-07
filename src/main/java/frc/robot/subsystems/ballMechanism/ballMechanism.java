@@ -4,12 +4,10 @@ import org.littletonrobotics.junction.Logger;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.subsystems.LEDs;
 
 public class ballMechanism extends SubsystemBase {
     ballMechanismIO io;
     ballMechanismInputsAutoLogged intakeAutoLogged = new ballMechanismInputsAutoLogged();
-    LEDs lights = new LEDs(9, 100);
 
     public ballMechanism(ballMechanismIO io) {
         this.io = io;
