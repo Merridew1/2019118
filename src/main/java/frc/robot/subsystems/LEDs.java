@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -113,6 +114,21 @@ public class LEDs extends SubsystemBase {
     public Command flashCommand(Color color, Color altColor) {
 
         return Commands.runEnd(null, null, null);
+    }
+
+    public void flash(Color color, Color altColor) {
+        Timer timer = new Timer();
+        for (int i = 0; i < 3; i++) {
+            if (i % 2 == 0) {
+                setColor(color);
+                timer.start();
+            } else {
+                setColor(altColor);
+                timer.start();
+            }
+            timer.advanceIfElapsed(.25);
+            timer.reset();
+        }
     }
 
 
