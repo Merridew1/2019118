@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+/*
+ * Hatch Class
+ */
 public class Hatch extends SubsystemBase {
     public HatchIO io;
     private HatchInputsAutoLogged inputs = new HatchInputsAutoLogged();
