@@ -29,7 +29,8 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void drive(Double lPower, double rPower) {
-        io.setDrivePower(lPower, rPower);
+        io.setDrivePower(driveTrainPidController.calculate(lPower),
+            driveTrainPidController.calculate(rPower));
         Logger.recordOutput("Drivetrain/leftPower", lPower);
         Logger.recordOutput("Drivetrain/rightPower", rPower);
     }
@@ -40,6 +41,6 @@ public class Drivetrain extends SubsystemBase {
 
     PIDController driveTrainPidController = new PIDController(Constants.PID.DriveTrain.P,
         Constants.PID.DriveTrain.I, Constants.PID.DriveTrain.D);
-        
+
 }
 
