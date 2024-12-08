@@ -57,14 +57,4 @@ public class Hatch extends SubsystemBase {
     public Command setHatchNeutral() {
         return setHatchAngle(neutral);
     }
-    /*
-     * public Command goToPosition(Rotation2d angle) { return Commands.runOnce(() -> {
-     * hatchPidController.reset(); hatchPidController.setSetpoint(angle.getDegrees()); pidEnabled =
-     * true; }).andThen(Commands.waitUntil(() -> atGoal())) .andThen(Commands.runOnce(() ->
-     * pidEnabled = false)); }
-     * 
-     * public Command hatchUpCommand() { return goToPosition(upright); }
-     * 
-     * public Command hatchNeutralCommand() { return goToPosition(neutral); }
-     */
 }
