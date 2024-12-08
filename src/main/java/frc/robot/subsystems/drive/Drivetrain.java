@@ -14,6 +14,8 @@ import frc.robot.Constants;
 public class Drivetrain extends SubsystemBase {
     private DrivetrainIO io;
     private DrivetrainIOInputsAutoLogged inputs = new DrivetrainIOInputsAutoLogged();
+    PIDController driveTrainPidController = new PIDController(Constants.PID.DriveTrain.P,
+        Constants.PID.DriveTrain.I, Constants.PID.DriveTrain.D);
 
     /**
      * Create Wrist Intake Subsystem
@@ -38,9 +40,5 @@ public class Drivetrain extends SubsystemBase {
     public Command driveCommand(CommandXboxController controller) {
         return run(() -> drive(controller.getLeftY(), controller.getRightY()));
     }
-
-    PIDController driveTrainPidController = new PIDController(Constants.PID.DriveTrain.P,
-        Constants.PID.DriveTrain.I, Constants.PID.DriveTrain.D);
-
 }
 
