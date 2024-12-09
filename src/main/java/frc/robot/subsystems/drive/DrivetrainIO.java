@@ -13,6 +13,8 @@ public interface DrivetrainIO {
     @AutoLog
     public static class DrivetrainIOInputs {
         public Rotation2d gyroYaw = new Rotation2d();
+        public double rightVelocity;
+        public double leftVelocity;
     }
 
     /** Updates the set of loggable inputs. */
