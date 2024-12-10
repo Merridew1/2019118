@@ -15,6 +15,8 @@ public interface DrivetrainIO {
         public Rotation2d gyroYaw = new Rotation2d();
         public double rightVelocity;
         public double leftVelocity;
+        public double rightDistance;
+        public double leftDistance;
     }
 
     /** Updates the set of loggable inputs. */
