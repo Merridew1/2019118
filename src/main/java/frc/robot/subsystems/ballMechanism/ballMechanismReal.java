@@ -1,12 +1,11 @@
 package frc.robot.subsystems.ballMechanism;
 
-import com.revrobotics.CANSparkLowLevel.MotorType;
-import com.revrobotics.CANSparkMax;
+import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 public class ballMechanismReal implements ballMechanismIO {
-    CANSparkMax neo =
-        new CANSparkMax(frc.robot.Constants.Motors.Intake.INTAKE_MOTOR_ID, MotorType.kBrushless);
+    SparkMax neo =
+        new SparkMax(frc.robot.Constants.Motors.Intake.INTAKE_MOTOR_ID, com.revrobotics.spark.SparkLowLevel.MotorType.kBrushless);
     DigitalInput intakeBeamBrake = new DigitalInput(0);
     DigitalInput outtakeBeamBrake = new DigitalInput(1);
 
