@@ -17,6 +17,8 @@ public class DrivetrainReal implements DrivetrainIO {
     TalonFX right2 = new TalonFX(Constants.Motors.DriveTrain.BACK_RIGHT_MOTOR_ID, "CANivore");
     StatusSignal<Double> rightVelocity = right1.getVelocity();
     StatusSignal<Double> leftVelocity = left1.getVelocity();
+    StatusSignal<Double> leftDistance = left1.getPosition();
+    StatusSignal<Double> rightDistance = right1.getPosition();
 
     /**
      * Drivetrain Real
@@ -31,6 +33,8 @@ public class DrivetrainReal implements DrivetrainIO {
         inputs.gyroYaw = Rotation2d.fromDegrees(0);
         inputs.leftVelocity = leftVelocity.getValueAsDouble();
         inputs.rightVelocity = rightVelocity.getValueAsDouble();
+        inputs.leftDistance = leftDistance.getValueAsDouble();
+        inputs.rightDistance = rightDistance.getValueAsDouble();
 
     
     }
