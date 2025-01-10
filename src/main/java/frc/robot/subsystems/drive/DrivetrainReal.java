@@ -36,7 +36,7 @@ public class DrivetrainReal implements DrivetrainIO {
         inputs.leftDistance = leftDistance.getValueAsDouble();
         inputs.rightDistance = rightDistance.getValueAsDouble();
 
-    
+
     }
 
     /**
