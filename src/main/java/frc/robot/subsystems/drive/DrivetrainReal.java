@@ -32,6 +32,7 @@ public class DrivetrainReal implements DrivetrainIO {
         inputs.leftVelocity = leftVelocity.getValueAsDouble();
         inputs.rightVelocity = rightVelocity.getValueAsDouble();
 
+    
     }
 
     /**
